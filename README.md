@@ -29,3 +29,5 @@ TODO:
 -----
 
 * https support
+* proper error handling
+* return codes

@@ -23,14 +23,12 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	if r.ContentLength == 0 || r.Body == nil {
 		http.NotFound(w, r)
-		log.Println("Len 0")
 		return
 	}
 
 	functions := strings.Split(html.EscapeString(r.URL.Path), "/")
 	if len(functions) <= 1 {
 		http.NotFound(w, r)
-		log.Println("nofunc")
 		return
 	}
 	// Path should always start with / so we'll drop the empty string at [0]
@@ -40,7 +38,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < len(functions); i++ {
 		if _, ok := supported[functions[i]]; !ok {
 			http.NotFound(w, r)
-			log.Println("notfound")
 			return
 		}
 	}
